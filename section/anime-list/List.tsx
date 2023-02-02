@@ -31,7 +31,7 @@ const List = () => {
       body: JSON.stringify(bodyRequest),
     };
 
-    const request = await fetch('/api/animes', options);
+    const request = await fetch('/api/anime/list', options);
     const result = await request.json();
 
     if (result.code === 200) {
