@@ -21,13 +21,11 @@ export const animeListQuery = `
 
 export const animeDetailQuery = `
   query ($id: Int) {
-    media(type: ANIME, id: $id) {
+    Media(type: ANIME, id: $id) {
       id
       title {
         userPreferred
       }
-      format
-      source
       genres
       duration
       episodes
@@ -39,7 +37,6 @@ export const animeDetailQuery = `
       }
       bannerImage
       averageScore
-      popularity
       startDate {
         year
       }

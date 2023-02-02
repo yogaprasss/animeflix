@@ -19,7 +19,6 @@ export interface AnimeProps {
 }
 
 export interface AnimeDetailProps extends AnimeProps {
-  format: string;
   genres: string[];
   duration: number;
   episodes: number;
@@ -27,9 +26,4 @@ export interface AnimeDetailProps extends AnimeProps {
   bannerImage: string;
   averageScore: number;
   startDate: AnimeStartDate;
-}
-
-export interface AnimeFilterProps {
-  search?: string;
-  genre?: string;
 }
