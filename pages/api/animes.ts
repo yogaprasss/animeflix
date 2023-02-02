@@ -16,6 +16,7 @@ export default async function handler(
 
   const variables = {
     page: body.page,
+    genre: body.genre,
   };
 
   const url = 'https://graphql.anilist.co';
