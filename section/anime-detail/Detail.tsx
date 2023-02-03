@@ -3,12 +3,39 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { Star } from '@mui/icons-material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
+import { FavoriteAnime } from '@/lib/storage/favoriteAnime';
+
 import type { AnimeDetailProps } from '@/models/anime';
 
-const List = ({ bannerImage, coverImage, title, startDate, episodes, duration, averageScore, genres, description }: AnimeDetailProps) => {
+const List = ({
+  id,
+  bannerImage,
+  coverImage,
+  title,
+  startDate,
+  episodes,
+  duration,
+  averageScore,
+  genres,
+  description,
+}: AnimeDetailProps) => {
   let episodeString = 'Still ongoing';
   if (episodes === 1) episodeString = `${duration} min`;
   else if (episodes !== null) episodeString = `${episodes} episodes`;
+
+  const [isAddedToFavorite, setIsAddedToFavorite] = useState(false);
+
+  const addToFavorite = () => {
+    const favoriteAnime = new FavoriteAnime();
+    favoriteAnime.save(Number(id));
+    setIsAddedToFavorite(true);
+  };
+
+  useEffect(() => {
+    const favoriteAnime = new FavoriteAnime();
+    if (favoriteAnime.get().includes(Number(id))) setIsAddedToFavorite(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Box maxWidth={1040}>
@@ -47,9 +74,12 @@ const List = ({ bannerImage, coverImage, title, startDate, episodes, duration, a
           <Typography variant='body1'>
             Genre: {JSON.stringify(genres).replace(/\"|\[|\]/g, '').replace(/\,/g, ', ')}
           </Typography>
-          <Button sx={{ color: 'white' }}>
-            <FavoriteBorder sx={{ marginRight: '4px' }} />
-            Add to Favorite
+          <Button onClick={addToFavorite} sx={{ color: 'white' }}>
+            {isAddedToFavorite
+              ? <Favorite sx={{ marginRight: '4px' }} />
+              : <FavoriteBorder sx={{ marginRight: '4px' }} />
+            }
+            {`${isAddedToFavorite ? 'Added' : 'Add'}`} to Favorite
           </Button>
         </Box>
       </Box>

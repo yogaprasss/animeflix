@@ -43,3 +43,23 @@ export const animeDetailQuery = `
     }
   }
 `;
+
+export const animeFavoriteQuery = (favoriteAnime: number[]) => {
+  return `
+    query {
+      ${favoriteAnime.map((animeId, index) => (
+        `anime${index + 1}: Media(type: ANIME, id: ${animeId}) {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            extraLarge
+            large
+            medium
+          }
+        }`
+      ))}
+    }
+  `;
+};
