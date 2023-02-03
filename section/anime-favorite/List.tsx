@@ -43,26 +43,19 @@ const List = () => {
   }, []);
 
   return (
-    <Box maxWidth={1040}>
-      <Grid container spacing={4} height='100%' paddingTop='6rem'>
-        {favoriteAnime.length === 0 && (
-          <Typography variant='h3'>
-            No results
-          </Typography>
-        )}
+    <Box maxWidth={1040} width='100%'>
+      {favoriteAnime.length === 0 && (
+        <Typography variant='h3'>
+          No results
+        </Typography>
+      )}
+      <Grid container spacing={4} height='100%' width='100%' paddingTop='3rem'>
         {favoriteAnime.map((anime, index) => (
-          <Grid key={`anime-${index + 1}`} item xs={6} sm={4} md={3} lg={2}>
+          <Grid key={`anime-favorite-${index + 1}`} item xs={6} sm={4} md={3} lg={2}>
             <AnimeCard {...anime} />
           </Grid>
         ))}
       </Grid>
-      {/* <Box width='100%' display='flex' justifyContent='center'>
-        {hasNextPage && !isLoadMore && (
-          <Button onClick={onClickLoadMore}>
-            Load More
-          </Button>
-        )}
-      </Box> */}
     </Box>
   );
 };

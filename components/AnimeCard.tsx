@@ -13,7 +13,7 @@ const AnimeCard = ({ id, title, coverImage, isFavorite }: AnimeCardProps) => {
   return (
     <Link href={`/anime/${id}`} passHref>
       <Box width='100%' height='350px'>
-        <Box position='relative' width='100%' height='180px'>
+        <Box position='relative' width='100%' height='250px'>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={coverImage.large}
@@ -22,14 +22,9 @@ const AnimeCard = ({ id, title, coverImage, isFavorite }: AnimeCardProps) => {
           />
         </Box>
         <br />
-        <Box display='flex' justifyContent='space-between'>
-          <Typography variant='subtitle1'>
-            {title.userPreferred}
-          </Typography>
-          <Button style={{ minWidth: '24px', padding: 0, height: '24px', color: 'white' }}>
-            {isFavorite ? <Favorite /> : <FavoriteBorder />}
-          </Button>
-        </Box>
+        <Typography variant='subtitle1'>
+          {title.userPreferred}
+        </Typography>
       </Box>
     </Link>
   );

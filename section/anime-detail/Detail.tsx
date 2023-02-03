@@ -27,8 +27,10 @@ const List = ({
 
   const addToFavorite = () => {
     const favoriteAnime = new FavoriteAnime();
-    favoriteAnime.save(Number(id));
-    setIsAddedToFavorite(true);
+    if (!favoriteAnime.get().includes(Number(id))) {
+      favoriteAnime.save(Number(id));
+      setIsAddedToFavorite(true);
+    }
   };
 
   useEffect(() => {
